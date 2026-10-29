@@ -14,6 +14,9 @@ export const Colors = {
     backgroundElement: '#F0F0F3',
     backgroundSelected: '#E0E1E6',
     textSecondary: '#60646C',
+    accent: '#208AEF',
+    ingreso: '#1A9E5C',
+    egreso: '#D9363E',
   },
   dark: {
     text: '#ffffff',
@@ -21,8 +24,27 @@ export const Colors = {
     backgroundElement: '#212225',
     backgroundSelected: '#2E3135',
     textSecondary: '#B0B4BA',
+    accent: '#4FA3F7',
+    ingreso: '#3DD68C',
+    egreso: '#FF6369',
   },
 } as const;
+
+/** Colores suaves para las categorías en las gráficas (estilo pastel). */
+export const PaletaCategorias = [
+  '#F28B82',
+  '#7FB3F5',
+  '#F7C66B',
+  '#8FD3A8',
+  '#C39BF2',
+  '#F5A3C7',
+  '#6FD0D8',
+  '#F7A76B',
+  '#A8C66C',
+  '#9FA8DA',
+  '#D7B49E',
+  '#B0BEC5',
+];
 
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 

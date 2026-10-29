@@ -1,56 +1,44 @@
-# Welcome to your Expo app 👋
+# Finanzas
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+App de iPhone para llevar tus gastos, ingresos y cuentas, inspirada en Fleur pero gratis y tuya.
 
-## Get started
+- **App:** Expo (React Native), corre en el iPhone con Expo Go
+- **Base de datos y login:** Supabase (Postgres)
 
-1. Install dependencies
+## Pestañas
+- **Inicio:** saldo del mes con barras de ingresos y gastos, y gastos por categoría. Botón **+** para agregar una transacción.
+- **Análisis:** gráfica de dona por categoría (gastos o ingresos), promedio diario y número de transacciones; puedes ir a meses anteriores.
+- **Transacciones:** todo lo del mes agrupado por día. Toca una para editarla o borrarla.
+- **Cuentas:** valor neto, saldo de cada cuenta, crear cuentas y transferir entre ellas.
 
-   ```bash
-   npm install
-   ```
+## Puesta en marcha (una sola vez)
 
-2. Start the app
+### 1. Proyecto de Supabase
+1. Crea un proyecto en [supabase.com](https://supabase.com).
+2. Ve a **SQL Editor**, pega todo el contenido de `supabase/migrations/20261025000000_esquema_inicial.sql` y dale **Run**.
+3. (Opcional, más cómodo) **Authentication → Sign In / Providers → Email** y desactiva *Confirm email*.
 
-   ```bash
-   npx expo start
-   ```
+### 2. Conectar la app
+Copia `.env.example` como `.env` y pon la URL y la *publishable key* del proyecto (**Project Settings → API Keys**).
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### 3. Abrir en el iPhone
+1. Instala **Expo Go** desde la App Store e inicia sesión con tu cuenta de Expo.
+2. En el PC, dentro de esta carpeta:
 
 ```bash
-npm run reset-project
+npx expo login --no-browser
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+```bash
+npm start
+```
 
-### Other setup steps
+3. Escanea el QR con la cámara del iPhone. El PC y el celular deben estar en el mismo Wi-Fi; si no conecta, usa `npx expo start --tunnel`.
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Estructura
+- `src/app/(tabs)/`: las 4 pestañas (`index` = Inicio, `analisis`, `transacciones`, `cuentas`)
+- `src/app/transaccion.tsx`: formulario para crear o editar una transacción
+- `src/app/nueva-cuenta.tsx`, `src/app/nueva-categoria.tsx`: formularios
+- `src/components/`: botón +, dona, barra de progreso, selector de mes, piezas de formulario, login
+- `src/lib/`: conexión a Supabase, consultas y formato de pesos/fechas
+- `supabase/migrations/`: tablas, seguridad (RLS) y categorías por defecto
