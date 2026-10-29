@@ -19,7 +19,7 @@ export function Dona({ porciones, titulo, valor, tamano = 220 }: { porciones: Po
   return (
     <View style={{ width: tamano, height: tamano }}>
       <Svg width={tamano} height={tamano} style={{ transform: [{ rotate: '-90deg' }] }}>
-        <Circle cx={tamano / 2} cy={tamano / 2} r={radio} stroke={theme.backgroundElement} strokeWidth={grosor} fill="none" />
+        <Circle cx={tamano / 2} cy={tamano / 2} r={radio} stroke={theme.backgroundSelected} strokeWidth={grosor} fill="none" />
         {total > 0 &&
           porciones.map((p, i) => {
             const largo = (p.valor / total) * circunferencia;

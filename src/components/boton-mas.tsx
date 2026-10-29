@@ -17,7 +17,7 @@ export function BotonMas() {
           onPress={() => router.push('/transaccion')}
           accessibilityLabel="Nueva transacción"
           style={({ pressed }) => [styles.boton, { backgroundColor: theme.accent, transform: [{ scale: pressed ? 0.94 : 1 }] }]}>
-          <SymbolView name="plus" size={26} weight="semibold" tintColor="#fff" />
+          <SymbolView name={{ ios: 'plus', web: 'add' }} size={26} weight="semibold" tintColor="#fff" />
         </Pressable>
       </View>
     </SafeAreaView>

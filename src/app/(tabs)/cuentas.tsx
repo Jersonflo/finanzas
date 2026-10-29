@@ -1,5 +1,5 @@
 import { router, useFocusEffect } from 'expo-router';
-import { SymbolView, type SFSymbol } from 'expo-symbols';
+import { SymbolView, type SymbolViewProps } from 'expo-symbols';
 import { useCallback, useState } from 'react';
 import { Pressable, RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -51,9 +51,9 @@ export default function CuentasScreen() {
           </View>
 
           <View style={styles.acciones}>
-            <BotonAccion icono="plus" texto="Nueva cuenta" onPress={() => router.push('/nueva-cuenta')} />
+            <BotonAccion icono={{ ios: 'plus', web: 'add' }} texto="Nueva cuenta" onPress={() => router.push('/nueva-cuenta')} />
             <BotonAccion
-              icono="arrow.left.arrow.right"
+              icono={{ ios: 'arrow.left.arrow.right', web: 'swap_horiz' }}
               texto="Transferir"
               onPress={() => router.push({ pathname: '/transaccion', params: { tipo: 'transferencia' } })}
             />
@@ -92,7 +92,7 @@ export default function CuentasScreen() {
   );
 }
 
-function BotonAccion({ icono, texto, onPress }: { icono: SFSymbol; texto: string; onPress: () => void }) {
+function BotonAccion({ icono, texto, onPress }: { icono: SymbolViewProps['name']; texto: string; onPress: () => void }) {
   const theme = useTheme();
   return (
     <Pressable

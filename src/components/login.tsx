@@ -35,8 +35,8 @@ export function Login() {
     <ThemedView style={styles.fill}>
       <SafeAreaView style={styles.fill}>
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.contenido}>
-          <ThemedText type="subtitle">Finanzas IA</ThemedText>
-          <ThemedText themeColor="textSecondary">Cuéntale tus gastos a la IA y ella lleva las cuentas.</ThemedText>
+          <ThemedText type="subtitle">Finanzas</ThemedText>
+          <ThemedText themeColor="textSecondary">Lleva tus gastos, ingresos y cuentas en un solo lugar.</ThemedText>
 
           <TextInput
             style={input}
@@ -85,7 +85,7 @@ export function Login() {
 const styles = StyleSheet.create({
   fill: { flex: 1 },
   contenido: { flex: 1, justifyContent: 'center', padding: Spacing.four, gap: Spacing.three },
-  input: { borderRadius: 12, paddingHorizontal: Spacing.three, paddingVertical: 14, fontSize: 16 },
+  input: { borderRadius: 12, paddingHorizontal: Spacing.three, paddingVertical: 14, fontSize: 16, outlineWidth: 0 },
   boton: { borderRadius: 12, paddingVertical: 14, alignItems: 'center' },
   textoBoton: { color: '#fff', fontWeight: 700 },
 });

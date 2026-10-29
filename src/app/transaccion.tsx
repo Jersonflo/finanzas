@@ -1,13 +1,14 @@
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { router, Stack, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
-import { Alert, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
+import { SelectorFecha } from '@/components/selector-fecha';
 import { BotonPrincipal, Chip, Chips, estilosFormulario, Seccion } from '@/components/formulario';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
+import { confirmar } from '@/lib/confirmar';
 import { desdeISO, escribirMonto, fechaISO, leerMonto } from '@/lib/formato';
 import {
   emojiCuenta,
@@ -112,17 +113,10 @@ export default function TransaccionScreen() {
   }
 
   function eliminar() {
-    Alert.alert('¿Eliminar transacción?', 'No se puede deshacer.', [
-      { text: 'Cancelar', style: 'cancel' },
-      {
-        text: 'Eliminar',
-        style: 'destructive',
-        onPress: async () => {
-          await supabase.from('movimientos').delete().eq('id', params.id!);
-          router.back();
-        },
-      },
-    ]);
+    confirmar('¿Eliminar transacción?', 'No se puede deshacer.', 'Eliminar', async () => {
+      await supabase.from('movimientos').delete().eq('id', params.id!);
+      router.back();
+    });
   }
 
   return (
@@ -224,14 +218,7 @@ export default function TransaccionScreen() {
             {fechaISO(fecha) !== fechaISO(new Date()) && (
               <Chip texto="Hoy" activo={false} onPress={() => setFecha(new Date())} />
             )}
-            <DateTimePicker
-              value={fecha}
-              mode="date"
-              display="compact"
-              locale="es-CO"
-              maximumDate={new Date()}
-              onChange={(_evento, elegida) => elegida && setFecha(elegida)}
-            />
+            <SelectorFecha valor={fecha} onCambio={setFecha} />
           </View>
         </View>
 
@@ -256,7 +243,7 @@ const styles = StyleSheet.create({
   textoBlanco: { color: '#fff' },
   montoZona: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: Spacing.one },
   signo: { fontSize: 34, lineHeight: 44, fontWeight: 600 },
-  monto: { fontSize: 44, fontWeight: 700, minWidth: 60, textAlign: 'center' },
+  monto: { fontSize: 44, fontWeight: 700, minWidth: 60, textAlign: 'center', outlineWidth: 0 },
   filaFecha: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   fechaDerecha: { flexDirection: 'row', alignItems: 'center', gap: Spacing.two },
   eliminar: { alignSelf: 'center', padding: Spacing.two },

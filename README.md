@@ -2,6 +2,8 @@
 
 Proyecto personal: una app de iPhone para llevar el control de mis finanzas personales. Registro gastos, ingresos y transferencias entre cuentas, y veo en qué se va la plata cada mes.
 
+**Pruébala:** [jersonflo.github.io/finanzas](https://jersonflo.github.io/finanzas/). En el iPhone, ábrela en Safari y usa *Compartir → Agregar a pantalla de inicio*.
+
 ## Qué hace
 - **Inicio:** saldo del mes con barras de ingresos y gastos, y gastos por categoría. Botón **+** para registrar una transacción.
 - **Análisis:** gráfica de dona por categoría, promedio diario y comparación entre meses.

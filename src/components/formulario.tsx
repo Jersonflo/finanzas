@@ -67,7 +67,7 @@ export function BotonPrincipal({
 
 export const estilosFormulario = StyleSheet.create({
   contenido: { padding: Spacing.three, gap: Spacing.four, paddingBottom: Spacing.six },
-  input: { borderRadius: 12, paddingHorizontal: Spacing.three, paddingVertical: 14, fontSize: 16 },
+  input: { borderRadius: 12, paddingHorizontal: Spacing.three, paddingVertical: 14, fontSize: 16, outlineWidth: 0 },
   error: { textAlign: 'center' },
 });
 

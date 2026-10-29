@@ -14,7 +14,7 @@ export function SelectorMes({ mes, onCambio }: { mes: Date; onCambio: (mes: Date
   return (
     <View style={[styles.contenedor, { backgroundColor: theme.backgroundElement }]}>
       <Pressable onPress={() => onCambio(sumarMeses(mes, -1))} hitSlop={10} style={styles.flecha}>
-        <SymbolView name="chevron.left" size={16} weight="semibold" tintColor={theme.text} />
+        <SymbolView name={{ ios: 'chevron.left', web: 'chevron_left' }} size={16} weight="semibold" tintColor={theme.text} />
       </Pressable>
       <ThemedText type="smallBold">{nombreMes(mes)}</ThemedText>
       <Pressable
@@ -22,7 +22,7 @@ export function SelectorMes({ mes, onCambio }: { mes: Date; onCambio: (mes: Date
         disabled={esMesActual}
         hitSlop={10}
         style={[styles.flecha, { opacity: esMesActual ? 0.25 : 1 }]}>
-        <SymbolView name="chevron.right" size={16} weight="semibold" tintColor={theme.text} />
+        <SymbolView name={{ ios: 'chevron.right', web: 'chevron_right' }} size={16} weight="semibold" tintColor={theme.text} />
       </Pressable>
     </View>
   );
